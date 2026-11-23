@@ -26,6 +26,27 @@ GridView.count
 5. BuildContext menjelaskan lokasi sebuah widget pada tree relatif terhadap anak dan parentnya. Hal ini digunakan pada metode build untuk membantu sebuah widget berubah sesuai kondisi parent dan childnya.
 6. Hot reload adalah command bawaan flutter yang berfungsi untuk membuat dan memperbaiki UIdengan cepat. Perbedaannya dengan hot restart adalah status aplikasinya. Ketika melakukan hot reload, aplikasinya akan menyimpan data sebelum hot reload. Sedangkan, hot restart menghapus data sebelumnya dan mengembalikan aplikasi ke kondisi awal. Hot reload hanya berguna ketika mengubah UI sebuah aplikasi dan hanya mengupdate build. Hot reload tidak bisa mengubah logika aplikasi seperti pengubahan konstruktor dan penambahan fitur baru.
 
+### Tugas 8
+1. Navigator.push() vs Navigator.pushReplacement() vs Navigator.pop():
+push(): Menambah halaman baru di atas stack (bisa kembali ke halaman sebelumnya).
+pushReplacement(): Mengganti halaman aktif di stack (tidak bisa kembali ke halaman yang diganti).
+pop(): Menutup halaman teratas dan kembali ke halaman sebelumnya.
+Buka formulir dari kartu aksi: Pakai Navigator.push() agar pengguna bisa kembali/batal dengan pop().
+Opsi Home di drawer ke halaman utama: Tutup drawer lalu navigasi ke halaman utama (misalnya pushReplacement() / pushAndRemoveUntil() agar stack tidak menumpuk, atau ubah state/tab aktif).
+2. Scaffold, AppBar, dan Drawer:
+Menjaga tata letak kerangka halaman, header, dan menu samping tetap seragam antarlayar.
+Contoh warna tema portofolio: Warna utama (misal biru tua) dipakai konsisten di AppBar halaman homepage, halaman proyek, serta tombol Simpan pada formulir lewat ThemeData/ColorScheme.
+3. Tata letak formulir, pengatur jarak, dan penggulir:
+Tata letak vertikal (Column) mudah dipindai, rapi di layar sempit, dan memberi ruang pesan error.
+Pengatur jarak (SizedBox/Padding): Menjaga jarak antar-field dan tombol agar tidak saling menempel/bertabrakan.
+Scroller (SingleChildScrollView/ListView): Mencegah overflow saat layar kecil atau keyboard muncul, serta memungkinkan akses ke field bawah/tombol Simpan.
+4. GlobalKey<FormState>, validator, dan validate():
+GlobalKey<FormState>: Mengakses FormState dari luar Form (misal saat tombol Simpan ditekan).
+validator: Mengecek isi field dan mengembalikan pesan error jika tidak valid, atau null jika valid.
+validate(): Menjalankan semua validator di Form dan mengembalikan true jika semua lolos.
+Contoh nilai ditolak adalah URL tanpa format valid (misal "portofolio-saya") atau field wajib kosong.
+keyboardType saja tidak cukup karena keyboardType hanya mengatur tampilan keyboard, pengguna masih bisa paste/mengetik input tidak sesuai aturan atau mengosongkan field.
+
 ### Referensi
 * [Flutter Stateful vs Stateless Widgets (GeeksforGeeks)] [https://www.geeksforgeeks.org/flutter/flutter-stateful-vs-stateless-widgets/]
 * [Material App Class in Flutter (GeeksforGeeks)] [https://www.geeksforgeeks.org/flutter/materialapp-class-in-flutter/]
@@ -39,4 +60,15 @@ GridView.count
 * [Expanded Class (Flutter)] [https://api.flutter.dev/flutter/widgets/Expanded-class.html]
 
 ### AI Disclosure
+Tugas 7
 Belum ada penggunaan AI untuk menulis code.
+
+Tugas 8
+Kelebihan:
+Cepat bikin boilerplate & UI
+Berguna merancangaturan validasi (spasi saja, panjang, URL, urutan tanggal) dan tata letak anti-overflow saat keyboard muncul.
+Mempercepat debugging & flutter analyze ketika muncul error.
+
+Kekurangan Pakai AI
+AI bisa memakai widget atau nama field yang terlalu berlebihan atau kurang sesuai dengan pilihan pribadi.
+Jika langsung copy-paste tanpa membaca alur Navigator, FormState, dan state, akan menyulitkan saat debugging.
