@@ -82,7 +82,8 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
   String? _validateLink(String? value) {
     if (value == null || value.trim().isEmpty) return null; // optional
     final uri = Uri.tryParse(value.trim());
-    final valid = uri != null &&
+    final valid =
+        uri != null &&
         (uri.scheme == 'http' || uri.scheme == 'https') &&
         uri.host.contains('.');
     if (!valid) {
@@ -102,7 +103,9 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Organization / Company: ${_organizationController.text.trim()}'),
+                Text(
+                  'Organization / Company: ${_organizationController.text.trim()}',
+                ),
                 Text('Role: ${_roleController.text.trim()}'),
                 Text('Type: $_experienceType'),
                 Text('Start Date: ${_startDateController.text}'),
@@ -151,17 +154,22 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
               _pad(
                 TextFormField(
                   controller: _organizationController,
-                  decoration: _decoration('Organization / Company',
-                      hint: 'e.g. Student Executive Board (BEM)'),
-                  validator: (v) => _validateRequired(v, 'Organization name', 60),
+                  decoration: _decoration(
+                    'Organization / Company',
+                    hint: 'e.g. Student Executive Board (BEM)',
+                  ),
+                  validator: (v) =>
+                      _validateRequired(v, 'Organization name', 60),
                 ),
               ),
               // === Role ===
               _pad(
                 TextFormField(
                   controller: _roleController,
-                  decoration: _decoration('Role',
-                      hint: 'e.g. Head of Event Division'),
+                  decoration: _decoration(
+                    'Role',
+                    hint: 'e.g. Head of Event Division',
+                  ),
                   validator: (v) => _validateRequired(v, 'Role', 60),
                 ),
               ),
@@ -181,9 +189,8 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                 TextFormField(
                   controller: _startDateController,
                   readOnly: true,
-                  decoration: _decoration('Start Date').copyWith(
-                    suffixIcon: const Icon(Icons.calendar_today),
-                  ),
+                  decoration: _decoration('Start Date')
+                      .copyWith(suffixIcon: const Icon(Icons.calendar_today)),
                   onTap: () => _pickDate(isStart: true),
                   validator: (v) {
                     if (_startDate == null) {
@@ -215,9 +222,8 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                   controller: _endDateController,
                   readOnly: true,
                   enabled: !_currentlyActive,
-                  decoration: _decoration('End Date').copyWith(
-                    suffixIcon: const Icon(Icons.calendar_today),
-                  ),
+                  decoration: _decoration('End Date')
+                      .copyWith(suffixIcon: const Icon(Icons.calendar_today)),
                   onTap: () => _pickDate(isStart: false),
                   validator: (v) {
                     if (_currentlyActive) return null;
@@ -236,8 +242,10 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                 TextFormField(
                   controller: _descriptionController,
                   maxLines: 5,
-                  decoration: _decoration('Description',
-                      hint: 'Describe your responsibilities and achievements'),
+                  decoration: _decoration(
+                    'Description',
+                    hint: 'Describe your responsibilities and achievements',
+                  ),
                   validator: (v) => _validateRequired(v, 'Description', 300),
                 ),
               ),
@@ -246,8 +254,10 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                 TextFormField(
                   controller: _linkController,
                   keyboardType: TextInputType.url,
-                  decoration: _decoration('Link',
-                      hint: 'https://... (optional)'),
+                  decoration: _decoration(
+                    'Link',
+                    hint: 'https://... (optional)',
+                  ),
                   validator: _validateLink,
                 ),
               ),
